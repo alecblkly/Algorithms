@@ -4,45 +4,34 @@ import argparse
 
 
 def find_max_profit(prices):
-    # Find maxiumum value within a list
-    # Find minimum value within a list
-    # Subtract min value from max to recieve maximum profit
-
-    # Doing a selection sort, then subtracting min from max
-
     # TODO - Order is important, not sorting this list
     # Originally, was sorting list and then subtracting Max from Min
     # However, if the Max was on Day 1, and the Min was on day 5
     # Unable to purchase the Min before the Max
 
-    for i in range(0, len(prices) - 1):
-        current_index = i
-        smallest_index = current_index
-        for j in range(current_index, len(prices)):
-            if prices[smallest_index] > prices[j]:
-                smallest_index = j
+    min_price_index = prices.index(min(prices))
+    max_price_index = prices.index(max(prices))
 
-        # Swap
-        temp = prices[smallest_index]
-        prices[smallest_index] = prices[current_index]
-        prices[current_index] = temp
+    for i in range(0, len(prices)):
+        if min(prices) < max(prices):
+            if min_price_index < max_price_index:
+                return max(prices) - min(prices)
+            else:
+                return
 
-        # Finding max profit
-        temp = (prices[-1] - prices[0])
-
-    return temp
+    return prices
 
 
-arr1 = [10, 7, 5, 8, 11, 9]  # 5, 11 = 6
-arr2 = [100, 90, 80, 50, 20, 10]  # 10, 100 = -10
-arr3 = [1050, 270, 1540, 3800, 2]  # 2, 3800 = 3530
+arr1 = [10, 7, 5, 8, 11, 9]  # 5, 11 = 6 -- 11 - 5 = 6
+arr2 = [100, 90, 80, 50, 20, 10]  # 10, 100 = -10 -- 10 - 20 = -10
+arr3 = [1050, 270, 1540, 3800, 2]  # 2, 3800 = 3530 -- 3800 - 270 = 3530
 arr4 = [100, 55, 4, 98, 10, 18, 90, 95, 43,
-        11, 47, 67, 89, 42, 49, 79]  # 4, 100 = 94
+        11, 47, 67, 89, 42, 49, 79]  # 4, 100 = 94 -- 98 - 4 = 94
 
-print("List One: ", find_max_profit(arr1), "6")
-print("List Two: ", find_max_profit(arr2), "-10")
-print("List Three: ", find_max_profit(arr3), "3530")
-print("List Four: ", find_max_profit(arr4), "94")
+print("List One: ", find_max_profit(arr1))
+print("List Two: ", find_max_profit(arr2))
+print("List Three: ", find_max_profit(arr3))
+print("List Four: ", find_max_profit(arr4))
 
 if __name__ == '__main__':
     # This is just some code to accept inputs from the command line
